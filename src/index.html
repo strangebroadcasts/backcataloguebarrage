@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Second Hit Wonder Quiz</title>
+    <title>The Back Catalogue Barrage Quiz</title>
     <style>
         body {
             text-align: center;
@@ -19,13 +19,19 @@
             height: 5em;
         }
 
+        .game-rules {
+            margin: auto auto;
+            max-width: 40em;
+            text-align: left;
+        }
+
         table {
             margin: auto auto;
             border-collapse: collapse;
             border: 2px solid rgb(140 140 140);
             font-family: sans-serif;
             font-size: 0.8rem;
-            letter-spacing: 1px;
+            /* letter-spacing: 1px; */
         }
 
         thead,
@@ -62,30 +68,28 @@
     <h2>Name any song! Just not that one.</h2>
 
     <h3>The Rules</h3>
-    <div style="margin: 1em 30% 1em 30%; text-align: left;" class="game-rules">
+    <div class="game-rules">
         <ul>
             <li>For each band/artist listed, name one song <em>except</em> their most popular</li>
-            <li>Capitalization, punctuation and parentheticals don't matter - if the song is called "C.Y.D.T.T. (Can You Dance To This?)", "cydtt" will work as an answer</li>
+            <li>Capitalization, punctuation and parentheticals don't matter - if the song is "C.Y.D.T.T. (Can You Dance To This?)", "cydtt" works</li>
             <li>You get 20 minutes to answer</li>
-            <li>All tracks where <a href="https://musicbrainz.org/">MusicBrainz</a> lists the band/artist as the main author(s) as of January 31st 2025 qualify</li>
+            <li>All tracks where <a href="https://musicbrainz.org/">MusicBrainz</a> lists the band/artist as main author(s) as of January 31st 2025 qualify</li>
         </ul>
     </div>
 
     <input type="button" class="start-game" id="start-game-btn" value="Let's go!" />
     <input type="button" class="forfeit-game" id="forfeit-game-btn" disabled value="I give up!" />
-    <h3 id="game-timer" style="visibility: hidden;">TIME LEFT: 19:59 - SCORE: 0/40</h3>
+    <h3 id="game-timer" style="visibility: hidden;">TIME LEFT: 20:00 - SCORE: 0/40</h3>
     <table id="game-table" style="visibility: hidden;">
-        <thead>
+        <tbody>
             <tr>
                 <th scope="row" colspan="3">Section 1. The 80s</th>
             </tr>
             <tr>
                 <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but not THIS SONG:</th>
+                <th scope="col">but NOT THIS SONG:</th>
                 <th scope="col">Answer</th>
             </tr>
-        </thead>
-        <tbody>
             <tr>
                 <td>Men Without Hats</td>
                 <td>The Safety Dance</td>
@@ -141,7 +145,7 @@
             </tr>
             <tr>
                 <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but not THIS SONG:</th>
+                <th scope="col">but NOT THIS SONG:</th>
                 <th scope="col">Answer</th>
             </tr>
             <tr>
@@ -199,7 +203,7 @@
             </tr>
             <tr>
                 <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but not THIS SONG:</th>
+                <th scope="col">but NOT THIS SONG:</th>
                 <th scope="col">Answer</th>
             </tr>
             <tr>
@@ -257,7 +261,7 @@
             </tr>
             <tr>
                 <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but not THIS SONG:</th>
+                <th scope="col">but NOT THIS SONG:</th>
                 <th scope="col">Answer</th>
             </tr>
             <tr>

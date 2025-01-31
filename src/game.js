@@ -1,11 +1,7 @@
 var gameState = 'start'; // "start", "running" or "finished"
-var timeLeft = 10;
+var timeLeft = 1200;
 var score = 0;
 var maxScore = 40;
-var bonusRoundUnlocked = false;
-
-console.log(QUESTIONS[0]);
-
 
 let gameTimerInterval;
 let gameTimer = document.getElementById("game-timer");
@@ -29,9 +25,6 @@ function startGame() {
 
     document.getElementById("start-game-btn").disabled = true;
     document.getElementById("forfeit-game-btn").disabled = false;
-
-
-    console.log("Game started");
 }
 
 function endGame() {
@@ -47,7 +40,9 @@ function endGame() {
     document.getElementById("forfeit-game-btn").disabled = true;
     clearInterval(gameTimerInterval);
     gameState = 'finished';
-    gameTimer.innerText = "GAME OVER - SCORE: " + score.toString() + "/" + maxScore.toString();
+    var pointTotal = score.toString() + "/" + maxScore.toString();
+    alert("Game over! You have gotten " + pointTotal + " points.");
+    gameTimer.innerText = "GAME OVER - SCORE: " + pointTotal;
 }
 
 function giveUp() {
@@ -60,8 +55,6 @@ function giveUp() {
     endGame();
 }
 
-
-
 function enterAnswer(evt) {
     var questionElement = evt.target;
     var questionId = evt.target.id;
@@ -70,7 +63,6 @@ function enterAnswer(evt) {
 
     // To make 
     if(QUESTIONS.hasOwnProperty(questionId)) {
-        console.log(cleanedAnswer);
         var possibleAnswers = QUESTIONS[questionId];
         if(possibleAnswers.hasOwnProperty(cleanedAnswer)) {
             // We have a match!
@@ -78,6 +70,11 @@ function enterAnswer(evt) {
             score += 1;
             questionElement.value = fullAnswer;
             questionElement.disabled = true;
+            questionElement.style.backgroundColor = 'palegreen';
+
+            if(score == maxScore) {
+                endGame();
+            }
         }
     }
 }
@@ -86,8 +83,7 @@ function updateTimer() {
     if ((gameState == 'running') && (timeLeft > 0.0)) {
         var secondsLeft = new Date(1000 * timeLeft).toISOString().substring(14, 19);
         gameTimer.innerText = "TIME LEFT: " + secondsLeft + ", SCORE: " + score.toString() + "/" + maxScore.toString();
-        // TODO: Decrement timer
-        // timeLeft = timeLeft - 1.0;
+        timeLeft = timeLeft - 1.0;
     }
     else if ((gameState == 'running') && (timeLeft <= 0.0)) {
         endGame();
