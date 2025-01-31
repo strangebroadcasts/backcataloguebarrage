@@ -9,3 +9,7 @@ This is a pure Javascript/HTML game, clone/download the repository and open `src
 
 
 `utils/get_tracks.py` can be used to retrieve track lists for individual artists, given their MusicBrainz ID (but you will likely need to do some manual pruning.)
+
+## Contributing
+
+With nearly 5000 possible answers I am bound to have gotten some wrong, PRs are very welcome.
