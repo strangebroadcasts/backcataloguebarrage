@@ -4,10 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+
     <title>The Back Catalogue Barrage Quiz</title>
     <style>
         body {
             text-align: center;
+            font-family: "Inter", serif;
+            font-style: normal;
         }
 
         .start-game {
@@ -29,7 +36,7 @@
             margin: auto auto;
             border-collapse: collapse;
             border: 2px solid rgb(140 140 140);
-            font-family: sans-serif;
+            font-family: "Inter", serif;
             font-size: 0.8rem;
             /* letter-spacing: 1px; */
         }
@@ -60,6 +67,13 @@
         tfoot td {
             font-weight: bold;
         }
+
+        h1 {
+            font-family: "Fugaz One", serif;
+        }
+        h2 {
+            font-family: "Fugaz One", serif;
+        }
     </style>
 </head>
 
@@ -70,16 +84,16 @@
     <h3>The Rules</h3>
     <div class="game-rules">
         <ul>
-            <li>For each band/artist listed, name one song <em>except</em> their most popular</li>
-            <li>Capitalization, punctuation and parentheticals don't matter - if the song is "C.Y.D.T.T. (Can You Dance To This?)", "cydtt" works</li>
-            <li>You get 20 minutes to answer</li>
-            <li>All tracks where <a href="https://musicbrainz.org/">MusicBrainz</a> lists the band/artist as main author(s) as of January 31st 2025 qualify</li>
+            <li>For each band/artist listed, name one of their songs, <em>except</em> their most popular.</li>
+            <li>You get 30 minutes to answer.</li>
+            <li>Capitalization, punctuation and parentheticals don't matter - if the song is named "C.Y.D.T.T. (Can You Dance To This?)", "cydtt" is a valid answer.</li>
+            <li>Tracks where <a href="https://musicbrainz.org/">MusicBrainz</a> lists the band/artist as main author(s) (as of January 31st 2025) qualify.</li>
         </ul>
     </div>
 
     <input type="button" class="start-game" id="start-game-btn" value="Let's go!" />
     <input type="button" class="forfeit-game" id="forfeit-game-btn" disabled value="I give up!" />
-    <h3 id="game-timer" style="visibility: hidden;">TIME LEFT: 20:00 - SCORE: 0/40</h3>
+    <h3 id="game-timer" style="visibility: hidden;">TIME LEFT: 30:00, SCORE: 0/40</h3>
     <table id="game-table" style="visibility: hidden;">
         <tbody>
             <tr>

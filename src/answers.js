@@ -1,3 +1,7 @@
+// The answer key for the game.
+// The first level maps input element IDs to dictionaries of possible answers,
+// which map the lowercased punctuation-free answers to the correct spelling.
+// (so that entering "cest la vie" produces "C'est la vie")
 const QUESTIONS = {
     'question-tom-tom-club': {
         "cmonsurrender": "(C\u2019mon) Surrender",
