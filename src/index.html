@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Hit Wonder Quiz</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .start-game {
+            width: 20em;
+            height: 5em;
+        }
+        .forfeit-game {
+            width: 20em;
+            height: 5em;
+        }
+
+        table {
+            margin: auto auto;
+            border-collapse: collapse;
+            border: 2px solid rgb(140 140 140);
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        thead,
+        tfoot {
+            background-color: rgb(228 240 245);
+        }
+
+        th,
+        td {
+            border: 1px solid rgb(160 160 160);
+            padding: 8px 10px;
+        }
+
+        td:last-of-type {
+            text-align: center;
+        }
+
+        tbody>tr:nth-of-type(even) {
+            background-color: rgb(237 238 242);
+        }
+
+        tfoot th {
+            text-align: right;
+        }
+
+        tfoot td {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The Back Catalogue Barrage</h1>
+    <h2>Name any song! Just not that one.</h2>
+
+    <h3>The Rules</h3>
+    <div style="margin: 1em 30% 1em 30%; text-align: left;" class="game-rules">
+        <ul>
+            <li>For each band/artist listed, name one song except their most popular</li>
+            <li>Capitalization, punctuation and parentheticals don't matter - if the song is called "C.Y.D.T.T. (Can You Dance To This?)", "cydtt" will work as an answer</li>
+            <li>You get 20 minutes to answer</li>
+            <li>Answer more than 10 questions correctly to unlock the Bonus Round</li>
+            <li>All tracks where <a href="https://musicbrainz.org/">MusicBrainz</a> lists the band/artist as the main author(s) as of January 31st 2025 qualify</li>
+        </ul>
+    </div>
+
+    <input type="button" class="start-game" id="start-game-btn" value="Let's go!" />
+    <input type="button" class="forfeit-game" id="forfeit-game-btn" disabled value="I give up!" />
+    <h3 id="game-timer" style="visibility: hidden;">TIME LEFT: 19:59 - SCORE: 0/40</h3>
+    <table id="game-table" style="visibility: hidden;">
+        <thead>
+            <tr>
+                <th scope="row" colspan="3">Section 1. The 80s</th>
+            </tr>
+            <tr>
+                <th scope="col">Name a song by THIS BAND</th>
+                <th scope="col">but not THIS SONG:</th>
+                <th scope="col">Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Men Without Hats</td>
+                <td>The Safety Dance</td>
+                <td><input id="question-men-without-hats" class="answer"/></td>
+            </tr>
+            <tr>
+                <td>Tom Tom Club</td>
+                <td>Genius of Love</td>
+                <td><input id="question-tom-tom-club" class="answer"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/javascript" src="./answers.js"></script>
+    <script type="text/javascript" src="./game.js"></script>
+
+</body>
+
+
+</html>
