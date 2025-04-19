@@ -131,9 +131,10 @@ titles_deduplicated = []
 
 for title in titles_processed:
     clean_title = re.sub(r'[^\w]', '', title.lower())
-    if clean_title not in checked:
-        checked.append(clean_title)
-        titles_deduplicated.append(title)
+    if ((not clean_title.isspace()) and (clean_title)):
+        if clean_title not in checked:
+            checked.append(clean_title)
+            titles_deduplicated.append(title)
 
 
 print(titles_deduplicated)
