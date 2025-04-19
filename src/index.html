@@ -33,6 +33,14 @@
             text-align: left;
         }
 
+        #game-title {
+            padding: 1em;
+        }
+
+        #game-title h2 {
+            display: inline;
+        }
+
         table {
             margin: auto auto;
             border-collapse: collapse;
@@ -50,7 +58,13 @@
         th,
         td {
             border: 1px solid rgb(160 160 160);
-            padding: 8px 10px;
+            padding: 0.8em 1em;
+        }
+
+        th.section {
+            background-color: white;
+            font-size: 1.3em;
+            padding: 1em;
         }
 
         td:last-of-type {
@@ -69,10 +83,7 @@
             font-weight: bold;
         }
 
-        h1 {
-            font-family: "Fugaz One", serif;
-        }
-        h2 {
+        h1, h2, h3 {
             font-family: "Fugaz One", serif;
         }
     </style>
@@ -82,7 +93,7 @@
     <h1>The Back Catalogue Barrage</h1>
     <h2>Name any song! Just not that one.</h2>
 
-    <h3>The Rules</h3>
+    <h2>The Rules</h2>
     <div class="game-rules">
         <ul>
             <li>For each band/artist listed, name one of their songs, <em>except</em> their most popular.</li>
@@ -92,246 +103,31 @@
         </ul>
     </div>
 
+    <div id="game-title"></div>
+
+
     <input type="button" class="start-game" id="start-game-btn" value="Let's go!" />
     <input type="button" class="forfeit-game" id="forfeit-game-btn" disabled value="I give up!" />
     <h3 id="game-timer" style="visibility: hidden;">TIME LEFT: 30:00, SCORE: 0/40</h3>
     <table id="game-table" style="visibility: hidden;">
         <tbody>
             <tr>
-                <th scope="row" colspan="3">Section 1. The 80s</th>
-            </tr>
-            <tr>
                 <th scope="col">Name a song by THIS BAND</th>
                 <th scope="col">but NOT THIS SONG:</th>
                 <th scope="col">Answer</th>
             </tr>
-            <tr>
-                <td>Men Without Hats</td>
-                <td>The Safety Dance</td>
-                <td><input id="question-men-without-hats" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Tom Tom Club</td>
-                <td>Genius of Love</td>
-                <td><input id="question-tom-tom-club" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Twisted Sister</td>
-                <td>We're Not Gonna Take It</td>
-                <td><input id="question-twisted-sister" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Midnight Oil</td>
-                <td>Beds are Burning</td>
-                <td><input id="question-midnight-oil" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Dead or Alive</td>
-                <td>You Spin Me Round (Like A Record)</td>
-                <td><input id="question-dead-or-alive" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Madness</td>
-                <td>Our House</td>
-                <td><input id="question-madness" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>The Buggles</td>
-                <td>Video Killed the Radio Star</td>
-                <td><input id="question-the-buggles" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>a-Ha</td>
-                <td>Take on Me</td>
-                <td><input id="question-a-ha" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>A Flock of Seagulls</td>
-                <td>I Ran (So Far Away)</td>
-                <td><input id="question-a-flock-of-seagulls" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Matthew Wilder</td>
-                <td>Break My Stride</td>
-                <td><input id="question-matthew-wilder" class="answer"/></td>
-            </tr>
-            <tr>
-                <th scope="row" colspan="3">Section 2. The 90s</th>
-            </tr>
-            <tr>
-                <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but NOT THIS SONG:</th>
-                <th scope="col">Answer</th>
-            </tr>
-            <tr>
-                <td>Sir Mix-a-Lot</td>
-                <td>Baby Got Back</td>
-                <td><input id="question-sir-mix-a-lot" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>The Proclaimers</td>
-                <td>I'm Gonna Be (500 Miles)</td>
-                <td><input id="question-the-proclaimers" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Aqua</td>
-                <td>Barbie Girl</td>
-                <td><input id="question-aqua" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Chumbawamba</td>
-                <td>Tubthumping</td>
-                <td><input id="question-chumbawamba" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Lou Bega</td>
-                <td>Mambo No. 5</td>
-                <td><input id="question-lou-bega" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>White Town</td>
-                <td>Your Woman</td>
-                <td><input id="question-white-town" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Spacehog</td>
-                <td>In The Meantime</td>
-                <td><input id="question-spacehog" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Oasis</td>
-                <td>Wonderwall</td>
-                <td><input id="question-oasis" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Crash Test Dummies</td>
-                <td>Mmm Mmm Mmm Mmm</td>
-                <td><input id="question-crash-test-dummies" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Tal Bachman</td>
-                <td>She's So High</td>
-                <td><input id="question-tal-bachman" class="answer"/></td>
-            </tr>
-            <tr>
-                <th scope="row" colspan="3">Section 3. The 2000s</th>
-            </tr>
-            <tr>
-                <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but NOT THIS SONG:</th>
-                <th scope="col">Answer</th>
-            </tr>
-            <tr>
-                <td>Franz Ferdinand</td>
-                <td>Take Me Out</td>
-                <td><input id="question-franz-ferdinand" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Darude</td>
-                <td>Sandstorm</td>
-                <td><input id="question-darude" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Junior Senior</td>
-                <td>Move Your Feet</td>
-                <td><input id="question-junior-senior" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Hoobastank</td>
-                <td>The Reason</td>
-                <td><input id="question-hoobastank" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Crazy Town</td>
-                <td>Butterfly</td>
-                <td><input id="question-crazy-town" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Gnarls Barkley</td>
-                <td>Crazy</td>
-                <td><input id="question-gnarls-barkley" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Wheatus</td>
-                <td>Teenage Dirtbag</td>
-                <td><input id="question-wheatus" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>James Blunt</td>
-                <td>You're Beautiful</td>
-                <td><input id="question-james-blunt" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Vanessa Carlton</td>
-                <td>A Thousand Miles</td>
-                <td><input id="question-vanessa-carlton" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Klaxons</td>
-                <td>Golden Skans</td>
-                <td><input id="question-klaxons" class="answer"/></td>
-            </tr>
-            <tr>
-                <th scope="row" colspan="3">Section 4. The 2010s</th>
-            </tr>
-            <tr>
-                <th scope="col">Name a song by THIS BAND</th>
-                <th scope="col">but NOT THIS SONG:</th>
-                <th scope="col">Answer</th>
-            </tr>
-            <tr>
-                <td>Gotye</td>
-                <td>Somebody That I Used To Know</td>
-                <td><input id="question-gotye" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Duck Sauce</td>
-                <td>Barbara Streisand</td>
-                <td><input id="question-duck-sauce" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>The Lumineers</td>
-                <td>Ho Hey</td>
-                <td><input id="question-the-lumineers" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>AWOLNATION</td>
-                <td>Sail</td>
-                <td><input id="question-awolnation" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Grouplove</td>
-                <td>Tongue Tied</td>
-                <td><input id="question-grouplove" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Vance Joy</td>
-                <td>Riptide</td>
-                <td><input id="question-vance-joy" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>PSY</td>
-                <td>Gangnam Style</td>
-                <td><input id="question-psy" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Foster The People</td>
-                <td>Pumped Up Kicks</td>
-                <td><input id="question-foster-the-people" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Carly Rae Jepsen</td>
-                <td>Call Me Maybe</td>
-                <td><input id="question-carly-rae-jepsen" class="answer"/></td>
-            </tr>
-            <tr>
-                <td>Baauer</td>
-                <td>Harlem Shake</td>
-                <td><input id="question-baauer" class="answer"/></td>
-            </tr>
+
             
         </tbody>
     </table>
+
+    <h2>Credits</h2>
+    <div class="game-rules">
+        <ul>
+            <li><a href="https://github.com/strangebroadcasts/backcataloguebarrage" title="Github">Original game engine</a> by <a href="https://itch.io/profile/strangebroadcasts">strangebroadcasts</a>, 
+            <li><a href="https://github.com/MattGrayYes/backcataloguebarrage" title="Github">Refactored game engine</a> by <a href="https://mattg.co.uk">Matt Gray</a>.</p>
+        </ul>
+    </div>
 
     <script type="text/javascript" src="./answers.js"></script>
     <script type="text/javascript" src="./game.js"></script>

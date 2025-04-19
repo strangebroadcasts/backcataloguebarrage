@@ -6,27 +6,54 @@ import musicbrainzngs
 import re
 musicbrainzngs.set_useragent("One-Hit-Quiz Track Retrieval", "1.0.0", "github.com/strangebroadcasts/one-hit-quiz")
 
-artist_id = input("Enter MusicBrainz artist ID (in hex format, e.g. bcadd123-...): ")
+print("Look up the artist's MusicBrainz id")
+print("For example, you could look up the Artist Queen: ")
+print("  * via the web: https://musicbrainz.org/search?type=artist&query=queen")
+print("       where you can get the artist ID from the artist's URL")
+print("  * or via the API: https://musicbrainz.org/ws/2/artist?fmt=json&limit=5&query=Queen")
+print("       where you can get the artist ID from the artists->[result number]->id\n")
+
+artist_id = input("Now enter the MusicBrainz artist ID (in hex format, e.g. bcadd123-...) here: ")
 if len(artist_id.strip()) < 1:
     print("Exiting.")
     sys.exit(0)
 titles = []
 limit, offset = 25, 0
 recording_count = 10000
+
 while offset <= recording_count:
     result = musicbrainzngs.browse_recordings(artist=artist_id, limit=limit, offset=offset)
     recording_list = result.get('recording-list', [])
     recording_count = result.get('recording-count', 0)
+    if offset == 0:
+        print("Found ", recording_count, " recordings")
     titles += [record['title'] for record in recording_list]
     offset += limit
+    remaining = recording_count - offset
+    print(remaining, " remaining")
 
-sorted_titles = sorted(list(set([unicodedata.normalize('NFC', title) for title in titles])))
+titles_processed = list(
+    dict.fromkeys(
+        sorted({
+            re.sub(r'\ ?\(.*\)$', '', unicodedata.normalize('NFC', title))
+            for title in titles
+        })
+    )
+)
 
-print(sorted_titles)
+checked = []
+titles_deduplicated = []
 
-titles_without_suffixes = sorted(list(set([re.sub(r'\ ?\(.*\)$', '', title) for title in sorted_titles])))
-print(titles_without_suffixes)
+for title in titles_processed:
+    clean_title = re.sub(r'[^\w]', '', title.lower())
+    if clean_title not in checked:
+        checked.append(clean_title)
+        titles_deduplicated.append(title)
 
-questions = {re.sub(r'[^\w]', '', title.lower()): title for title in titles_without_suffixes}
+
+print(titles_deduplicated)
+
+questions = [title for title in titles_deduplicated]
 with open('titles.json', 'w') as title_file:
-    json.dump(questions, title_file)
+    json.dump(questions, title_file, indent="")
+

@@ -13,7 +13,7 @@ var timeLeft = 1800;
 var score = 0;
 
 // How many points the player can attain
-var maxScore = 40;
+var maxScore = QUESTIONS.length;
 
 // The interval ID for the game's timer
 // (set by startGame, cleared by endGame)
@@ -28,10 +28,40 @@ let gameTimer = document.getElementById("game-timer");
 // We attach an event listener to the table to react to
 // updated guesses as part of startGame()
 var gameTable = document.getElementById("game-table");
+
+window.addEventListener("load", (event) => {
+    // display the game title and author
+    var title = document.getElementById("game-title");
+    title.innerHTML = "<h2>" + GAME_METADATA.name + "</h2> by <a href='" + GAME_METADATA.url + "'>" + GAME_METADATA.author + "</a>";
+});
+
 function startGame() {
     if (gameState !== 'start') {
         return;
     }
+
+    // load the questions into the table
+    var table = document.getElementById("game-table");
+
+    QUESTIONS.forEach((qn,i) => {
+        if(qn.tracks.length>0) {
+            if(qn.hasOwnProperty("section_header")) {
+                row = table.insertRow(-1);
+                row.innerHTML = "<th scope=row colspan=3 class='section'>"+qn.section_header+"</th>";    
+            }
+            row = table.insertRow(-1);
+
+            // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+            cell1 = row.insertCell();
+            cell2 = row.insertCell();
+            cell3 = row.insertCell();
+    
+            // Add some text to the new cells:
+            cell1.innerHTML = qn.artist;
+            cell2.innerHTML = qn.title;
+            cell3.innerHTML = "<input id='question-"+i+"' class='answer'/>";    
+        }
+    });
 
     gameState = 'running';
     gameTimerInterval = setInterval(updateTimer, 1000);
@@ -48,6 +78,7 @@ function startGame() {
 
     document.getElementById("start-game-btn").disabled = true;
     document.getElementById("forfeit-game-btn").disabled = false;
+
 }
 
 function endGame() {
@@ -66,9 +97,9 @@ function endGame() {
     gameState = 'finished';
     var pointTotal = score.toString() + "/" + maxScore.toString();
     if(score == maxScore) {
-        alert("Holy moly! You have gotten every question right, well done!");
+        alert("Holy moly! You got every question right, well done!");
     } else {
-        alert("Game over! You have gotten " + pointTotal + " points.");
+        alert("Game over! You scored " + pointTotal + " points.");
     }
     gameTimer.innerText = "GAME OVER - SCORE: " + pointTotal;
 }
@@ -89,41 +120,50 @@ function enterAnswer(evt) {
     // elements: questionId is the ID of the input element,
     // and currentAnswer is the current contents of the element.
     var questionElement = evt.target;
-    var questionId = evt.target.id;
+    var questionId = evt.target.id.replace("question-","");
     var currentAnswer = evt.target.value;
     
     // To try and make the game less unreasonable,
     // we only check whether the letters in the answer match,
     // and disregard capitalization and punctuation.
-    var cleanedAnswer = currentAnswer.toLowerCase().replace(/[^\w]/g,'');
+    var cleanedAnswer = clean_text(currentAnswer);
 
-    // The QUESTIONS answer key (defined in answers.js)
-    // is structured as a two-level dictionary, where the first level
-    // maps the input element ID to a dictionary of possible answers,
-    // and the dictionary maps the lowercased punctuation-free answers
-    // to the correct spelling 
-    // (so that entering "cest la vie" produces "C'est la vie")
     // First, check that the input ID has answers defined
     if(QUESTIONS.hasOwnProperty(questionId)) {
-        // Then, check whether the current contents of
-        // the field matches one of the answers we recognize:
-        var possibleAnswers = QUESTIONS[questionId];
-        if(possibleAnswers.hasOwnProperty(cleanedAnswer)) {
-            // We have a match!
-            var fullAnswer = QUESTIONS[questionId][cleanedAnswer];
 
-            // Award a point and lock the answer in.
-            score += 1;
-            questionElement.value = fullAnswer;
-            questionElement.disabled = true;
-            questionElement.style.backgroundColor = 'palegreen';
+        var possibleAnswers = QUESTIONS[questionId].tracks.map(clean_text);
 
-            // If all answers are correct, end the game.
-            if(score == maxScore) {
-                endGame();
+        // Make sure the current field isn't the given track in the question
+        if(cleanedAnswer != clean_text(QUESTIONS[questionId].title))
+        {
+            // Then, check whether the current contents of
+            // the field matches one of the answers we recognize:
+            index = possibleAnswers.indexOf(cleanedAnswer);
+
+            if(index >= 0) {
+                // We have a match!
+                var fullAnswer = QUESTIONS[questionId].tracks[index];
+
+                // Award a point and lock the answer in.
+                score += 1;
+                questionElement.value = fullAnswer;
+                questionElement.disabled = true;
+                questionElement.style.backgroundColor = 'palegreen';
+    
+                // If all answers are correct, end the game.
+                if(score == maxScore) {
+                    endGame();
+                }
             }
         }
+        else
+            console.log(cleanedAnswer+" is the question, so it can't be the answer");
     }
+}
+
+function clean_text(input)
+{
+    return input.toLowerCase().replace(/[^\w]/g,'');
 }
 
 function updateTimer() {
