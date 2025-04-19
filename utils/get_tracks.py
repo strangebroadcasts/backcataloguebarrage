@@ -16,7 +16,6 @@ def artist_search():
     limit = 5
 
     result = musicbrainzngs.search_artists(artist=artist_name, limit=limit)
-    print(str(len(result))+" results")
     i=1
     for artist in result['artist-list']:
         out = str(i) + ": "
@@ -37,6 +36,8 @@ def artist_search():
             if 'life-span' in artist:
                 if 'begin' in artist["life-span"]:
                     span += "("+artist["life-span"]["begin"][:4] +" - "
+                else:
+                    span += "(? - "
                 if 'ended' in artist["life-span"]:
                     if (artist["life-span"]["ended"] == "true"):
                         if 'end' in artist["life-span"]:
@@ -45,6 +46,8 @@ def artist_search():
                             span += "?)"
                     else:
                         span += "present)"
+                else:
+                    span += "?)"
                 out += span.ljust(17) +" "
             if 'tag-list' in artist:
                 genres = sorted(artist['tag-list'], key=lambda d: d['count'], reverse=True)
