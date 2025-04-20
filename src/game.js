@@ -164,7 +164,7 @@ function enterAnswer(evt) {
 
 function clean_text(input)
 {
-    return input.toLowerCase().replace(/[^\w]/g,'');
+    return input.toLowerCase().replace(/[^\w]/g,'u');
 }
 
 function updateTimer() {
