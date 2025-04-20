@@ -13,7 +13,7 @@ var timeLeft = 1800;
 var score = 0;
 
 // How many points the player can attain
-var maxScore = QUESTIONS.length -1;
+var maxScore = QUESTIONS.length;
 
 // The interval ID for the game's timer
 // (set by startGame, cleared by endGame)
