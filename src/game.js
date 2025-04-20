@@ -13,7 +13,7 @@ var timeLeft = 1800;
 var score = 0;
 
 // How many points the player can attain
-var maxScore = QUESTIONS.length;
+var maxScore = QUESTIONS.length -1;
 
 // The interval ID for the game's timer
 // (set by startGame, cleared by endGame)
@@ -33,6 +33,7 @@ window.addEventListener("load", (event) => {
     // display the game title and author
     var title = document.getElementById("game-title");
     title.innerHTML = "<h2>" + GAME_METADATA.name + "</h2> by <a href='" + GAME_METADATA.url + "'>" + GAME_METADATA.author + "</a>";
+    gameTimer.innerText = "TIME LEFT: 30:00, SCORE: " + score.toString() + "/" + maxScore.toString();
 });
 
 function startGame() {
